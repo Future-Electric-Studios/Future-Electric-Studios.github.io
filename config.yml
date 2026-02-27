@@ -2,7 +2,7 @@ title: "Future Electric Studios"
 description: "Future Electric Studios — non-profit, multi-platform Roblox community and creative projects."
 baseurl: ""        # leave empty for user/organization pages
 url: "https://futureelectricstudios.github.io"
-theme: minima
+remote_theme: mmistakes/minimal-mistakes
 markdown: kramdown
 plugins:
   - jekyll-seo-tag
