@@ -7,7 +7,7 @@ title: Home
   <div class="hero-inner">
     <h1 class="hero-title">Future Electric Studios</h1>
     <div class="rotator" aria-live="polite">
-      <p class="rot-item">Building creative Roblox experiences.</p>
+      <p class="rot-item">Building creative Roblox Experiences.</p>
       <p class="rot-item">Open-source tools and GitHub projects.</p>
       <p class="rot-item">Join our Discord for announcements.</p>
     </div>
