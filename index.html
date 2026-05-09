@@ -4,38 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Future Electric Studios</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Importing a professional font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #161616;
+            --accent: #007aff; /* Pro Blue */
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --nav-bg: rgba(10, 10, 10, 0.8);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        /* Modern Blurred Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; }
+        
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text-main); }
+
+        /* Professional Hero Section */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background: var(--text-main);
+            color: black;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 25px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cta-button:hover { transform: scale(1.05); }
+
+        /* Content Grid */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--accent); }
+
+        .card h3 { font-size: 1.5rem; margin-top: 0; }
+        .card p { color: var(--text-dim); font-size: 0.95rem; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Future Electric</div>
-        <ul class="nav-links">
-            <li><a href="#work">Work</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact" class="btn-casual">Say Hi</a></li>
-        </ul>
+
+    <nav>
+        <div class="logo">FUTURE ELECTRIC</div>
+        <div class="nav-links">
+            <a href="#">Games</a>
+            <a href="#">Tech</a>
+            <a href="#">About</a>
+        </div>
     </nav>
 
-    <header class="hero">
-        <h1>Building things that <span class="highlight">spark</span> joy.</h1>
-        <p>A creative studio exploring the intersection of code, hardware, and physics.</p>
+    <header>
+        <h1>Building the <span style="color: var(--accent);">Future</span>.</h1>
+        <p>A high-end creative studio focusing on technical experiments, custom hardware, and digital physics.</p>
+        <a href="#" class="cta-button">Explore Studios</a>
     </header>
 
-    <main id="work" class="container">
-        <div class="grid">
-            <div class="card">
-                <h3>Minecraft Lab</h3>
-                <p>Technical experiments in sandbox worlds.</p>
-            </div>
-            <div class="card">
-                <h3>Hardware Mods</h3>
-                <p>Custom PC builds and networking tweaks.</p>
-            </div>
-            <div class="card">
-                <h3>Web Dev</h3>
-                <p>Crafting modern digital experiences.</p>
-            </div>
+    <div class="container">
+        <div class="card">
+            <h3>Sandbox Lab</h3>
+            <p>Advancing the mechanics of virtual environments and dimensional logic.</p>
         </div>
-    </main>
+        <div class="card">
+            <h3>Hardware Mods</h3>
+            <p>Custom PC engineering and high-voltage material resistance research.</p>
+        </div>
+        <div class="card">
+            <h3>Digital Design</h3>
+            <p>Professional-grade web interfaces and high-performance applications.</p>
+        </div>
+    </div>
+
 </body>
 </html>
