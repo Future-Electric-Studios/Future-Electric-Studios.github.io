@@ -26,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* Consistent Navbar with Homepage */
+        /* Navbar */
         nav {
             position: fixed;
             top: 0;
@@ -63,23 +63,29 @@
             background: #222;
         }
 
-        /* Form Container Fix for Mobile/Desktop */
+        /* Form Wrapper with Glow Effect */
         .form-wrapper {
-            margin-top: 80px; /* Space for the navbar */
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            justify-content: center;
-            padding-bottom: 40px;
+            margin-top: 100px;
+            width: 95%;
+            max-width: 850px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03); 
+            border-radius: 28px;
+            border: 1px solid #333;
+            box-shadow: 0 0 50px rgba(0, 122, 255, 0.15); /* Soft blue studio glow */
+            margin-bottom: 50px;
+            box-sizing: border-box;
         }
 
         iframe {
             width: 100%;
-            height: 800px; /* Matches your form height */
+            height: 800px;
             border: none;
-            border-radius: 12px;
+            border-radius: 20px; /* Rounds the white corners of the form */
+            filter: contrast(102%) brightness(95%); /* Softens the harsh light mode */
         }
 
+        /* Mobile Adjustments for Pixel 7 and others */
         @media (max-width: 600px) {
             nav {
                 padding: 10px 0;
@@ -87,8 +93,9 @@
                 flex-direction: column;
             }
             .form-wrapper {
-                margin-top: 110px;
+                margin-top: 120px;
                 padding: 10px;
+                width: 98%;
             }
             iframe {
                 height: 700px;
