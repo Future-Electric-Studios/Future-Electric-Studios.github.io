@@ -116,6 +116,38 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
         }
+        /* Mobile-Specific Fixes */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column; /* Stacks logo and links */
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                gap: 5px; /* Brings links closer so they don't wrap */
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 0.85rem;
+                padding: 10px 5px; /* Larger "tap" area for fingers */
+            }
+
+            h1 {
+                font-size: 2.2rem; /* Shrinks the giant title so it fits on one screen */
+                padding: 0 10px;
+            }
+
+            header {
+                height: auto;
+                padding: 100px 20px 40px 20px;
+            }
+        }
     </style>
 </head>
 <body>
