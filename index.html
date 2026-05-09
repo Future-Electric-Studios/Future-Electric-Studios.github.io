@@ -148,6 +148,28 @@
                 padding: 100px 20px 40px 20px;
             }
         }
+
+        /* Footer/Badge Styling */
+        footer {
+            margin-top: 50px;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-top: 1px solid #222;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .sf-root {
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 122, 255, 0.1));
+        }
+
+        .sf-root:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.3));
+        }
     </style>
 </head>
 <body>
@@ -181,6 +203,17 @@
             <p>Crafting free, optimized operating system projects and debloated software solutions.</p>
         </div>
     </div>
+
+    <footer>
+        <!-- SourceForge Badge -->
+        <div class="sf-root" data-id="4093581" data-badge="oss-users-love-us-black" style="width:142px">
+            <a href="https://sourceforge.net/projects/future-electric-studios/" target="_blank">Future Electric Studios</a>
+        </div>
+        <p style="color: #666; font-size: 0.8rem; margin-top: 15px;">© 2026 Future Electric Studios. All Rights Reserved.</p>
+    </footer>
+
+    <script>(function () {var sc=document.createElement('script');sc.async=true;sc.src='https://b.sf-syn.com/badge_js?sf_id=4093581';var p=document.getElementsByTagName('script')[0];p.parentNode.insertBefore(sc, p);})();
+    </script>
 
 </body>
 </html>
