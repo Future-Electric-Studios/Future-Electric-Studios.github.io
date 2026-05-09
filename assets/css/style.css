@@ -1,56 +1,101 @@
-:root{
-  --bg:#0f1724;
-  --card:#0b1220;
-  --accent:#00d1ff;
-  --muted:#9aa4b2;
-  --text:#e6eef6;
-  --glass: rgba(255,255,255,0.03);
-  --radius:10px;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+:root {
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --primary: #6366f1; /* Soft Indigo */
+    --accent: #f43f5e;
+    --card-bg: #ffffff;
 }
 
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,#071021 0%, #0f1724 100%);color:var(--text);line-height:1.6}
-a{color:var(--accent);text-decoration:none}
-.site-header{position:sticky;top:0;z-index:50;background:rgba(6,10,15,0.6);backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
-.navbar{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1.2rem}
-.brand a{font-size:1.1rem;color:var(--text)}
-.nav-links{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
-.nav-links li a{padding:0.5rem 0.8rem;border-radius:6px}
-.nav-links li a:hover{background:var(--glass)}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f172a;
+        --text: #f1f5f9;
+        --card-bg: #1e293b;
+    }
+}
 
-.hamburger{display:none;background:none;border:0;cursor:pointer;padding:0.4rem}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+}
 
-/* Drawer */
-.drawer{position:fixed;right:-320px;top:0;height:100vh;width:320px;background:#071226;padding:2rem;transition:right .35s cubic-bezier(.2,.9,.3,1);box-shadow:-20px 0 40px rgba(0,0,0,0.6)}
-.drawer.open{right:0}
-.drawer ul{list-style:none;padding:0;margin:0}
-.drawer li{margin:0.8rem 0}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
 
-/* Hero */
-.hero{padding:4rem 1rem;display:flex;align-items:center;justify-content:center;text-align:center}
-.hero-inner{max-width:900px}
-.hero-title{font-size:2.2rem;margin:0 0 1rem}
-.rotator{height:3.2rem;position:relative;overflow:hidden}
-.rot-item{position:absolute;left:0;right:0;opacity:0;transform:translateY(10px);transition:opacity 1.6s ease, transform 1.6s ease;font-size:1.1rem;color:var(--muted)}
-.rot-item.show{opacity:1;transform:translateY(0)}
+/* Navbar - Pro/Minimalist */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+}
 
-/* Buttons */
-.btn{display:inline-block;padding:0.6rem 1rem;border-radius:8px;background:var(--accent);color:#001; font-weight:600;margin:0.4rem}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
 
-/* Sections */
-.section{padding:2rem 1rem;max-width:1000px;margin:0 auto}
-.section h2{margin-top:0}
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: 0.3s;
+}
 
-/* Projects list */
-.projects-list{list-style:none;padding:0;margin:1rem 0}
-.projects-list li{padding:0.8rem;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:0.6rem}
+.nav-links a:hover {
+    color: var(--primary);
+}
 
-/* Responsive */
-@media (max-width:900px){
-  .nav-links{display:none}
-  .hamburger{display:block}
-  .hero-title{font-size:1.6rem}
+/* Hero Section - Casual & Friendly */
+.hero {
+    text-align: center;
+    padding: 6rem 1rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.highlight {
+    color: var(--primary);
+}
+
+/* Grid Cards - The "Professional" look */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-casual {
+    background: var(--primary);
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 99px;
 }
