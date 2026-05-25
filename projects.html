@@ -346,11 +346,12 @@ description: Browse and search Future Electric Studios projects.
             const searchInput = document.getElementById('projectSearch');
             
             const groupId = "34470356";
-            // Configured to the correct v2 group game list mapping
+            // Target endpoint for public group experiences
             const gamesApiUrl = `https://games.roproxy.com/v2/groups/${groupId}/gamesV2?accessFilter=2&sortOrder=Asc&limit=100`;
-            const iconApiUrl = `https://thumbnails.roproxy.com/v1/places/icons?returnPolicy=PlaceHolder&size=150x150&format=Png&placeIds=`;
+            // Using the games thumbnail API which perfectly maps directly to the universe ID (game.id)
+            const iconApiUrl = `https://thumbnails.roproxy.com/v1/games/icons?universeIds=`;
 
-        	try {
+            try {
                 const response = await fetch(gamesApiUrl);
                 if (!response.ok) throw new Error('Data validation error returned from proxy interface');
                 
@@ -365,13 +366,13 @@ description: Browse and search Future Electric Studios projects.
                 // Alphabetical sorting sequence execution
                 const sortedGames = gamesRaw.sort((alpha, beta) => alpha.name.localeCompare(beta.name));
 
-                // Process specific IDs using the corrected property path rootPlaceId
-                const placeIds = sortedGames.map(game => game.rootPlaceId).filter(id => id).join(',');
+                // Extracting universe IDs via 'game.id' from gamesV2 endpoint data
+                const universeIds = sortedGames.map(game => game.id).filter(id => id).join(',');
                 
                 let iconMap = {};
-                if (placeIds) {
+                if (universeIds) {
                     try {
-                        const iconResponse = await fetch(`${iconApiUrl}${placeIds}`);
+                        const iconResponse = await fetch(`${iconApiUrl}${universeIds}&size=150x150&format=Png&isCircular=false`);
                         if (iconResponse.ok) {
                             const iconPayload = await iconResponse.json();
                             (iconPayload.data || []).forEach(imgObj => {
@@ -383,12 +384,12 @@ description: Browse and search Future Electric Studios projects.
                     }
                 }
 
-                // Structural payload variable hydration loop
+                // Hydrate structured array using proper ID parameters
                 fetchedGames = sortedGames.map(game => ({
                     name: game.name,
-                    placeId: game.rootPlaceId,
+                    placeId: game.id, // game.id represents the correct pointer needed for the link
                     creatorName: game.creator ? game.creator.name : "Future Electric Studios",
-                    thumbnailUrl: iconMap[game.rootPlaceId] || 'https://www.roblox.com/images/Ghost/user.png'
+                    thumbnailUrl: iconMap[game.id] || 'https://www.roblox.com/images/Ghost/user.png'
                 }));
 
                 renderGames(fetchedGames);
@@ -415,102 +416,4 @@ description: Browse and search Future Electric Studios projects.
             }
 
             list.forEach(game => {
-                const element = document.createElement('a');
-                element.className = 'game-row';
-                element.href = `https://www.roblox.com/games/${game.placeId}`;
-                element.target = '_blank';
-                element.innerHTML = `
-                    <img class="game-thumbnail" src="${game.thumbnailUrl}" alt="${game.name}">
-                    <div class="game-info">
-                        <p class="game-title">${game.name}</p>
-                        <p class="game-description">Creator: ${game.creatorName}</p>
-                    </div>
-                    <span class="view-badge">Launch →</span>
-                `;
-                listContainer.appendChild(element);
-            });
-        }
-
-        // --- Core 2: SourceForge Product Sync Module ---
-        async function fetchSourceForgeProducts() {
-            const listContainer = document.getElementById('sfList');
-            const searchInput = document.getElementById('sfSearch');
-            const projectName = "future-electric-studios";
-            const sfApiUrl = `https://sourceforge.net/api/project/name/${projectName}/json`;
-
-            try {
-                const response = await fetch(sfApiUrl);
-                if (!response.ok) throw new Error('SourceForge endpoint communication failure');
-                
-                const data = await response.json();
-                const projectData = data.project || {};
-                
-                let mockItems = [
-                    {
-                        name: projectData.title || "Custom OS Distribution Build",
-                        desc: projectData.summary || "Optimized, debloated open-source systems architecture package.",
-                        url: projectData.homepage || `https://sourceforge.net/projects/${projectName}/`
-                    }
-                ];
-
-                fetchedProducts = mockItems.sort((alpha, beta) => alpha.name.localeCompare(beta.name));
-                renderProducts(fetchedProducts);
-
-                searchInput.addEventListener('input', (e) => {
-                    const term = e.target.value.toLowerCase().trim();
-                    const filtered = fetchedProducts.filter(item => item.name.toLowerCase().includes(term));
-                    renderProducts(filtered);
-                });
-
-            } catch (error) {
-                console.error(error);
-                fetchedProducts = [{
-                    name: "Future Electric OS Framework",
-                    desc: "Free, optimized operating system project and custom debloated desktop software environments.",
-                    url: `https://sourceforge.net/projects/${projectName}/files/`
-                }].sort((alpha, beta) => alpha.name.localeCompare(beta.name));
-                
-                renderProducts(fetchedProducts);
-                
-                searchInput.addEventListener('input', (e) => {
-                    const term = e.target.value.toLowerCase().trim();
-                    const filtered = fetchedProducts.filter(item => item.name.toLowerCase().includes(term));
-                    renderProducts(filtered);
-                });
-            }
-        }
-
-        function renderProducts(list) {
-            const listContainer = document.getElementById('sfList');
-            listContainer.innerHTML = '';
-
-            if (list.length === 0) {
-                listContainer.innerHTML = '<p class="list-status">No matching products found.</p>';
-                return;
-            }
-
-            list.forEach(item => {
-                const element = document.createElement('a');
-                element.className = 'game-row';
-                element.href = item.url;
-                element.target = '_blank';
-                element.innerHTML = `
-                    <img class="game-thumbnail" src="https://sourceforge.net/images/icon_bravoshare.png" alt="SF Asset File" style="object-fit: contain; padding: 4px; box-sizing: border-box; background: #1e1e1e;">
-                    <div class="game-info">
-                        <p class="game-title">${item.name}</p>
-                        <p class="game-description">${item.desc}</p>
-                    </div>
-                    <span class="view-badge" style="color: #ff9500; background: rgba(255,149,0,0.1);">Get Asset →</span>
-                `;
-                listContainer.appendChild(element);
-            });
-        }
-
-        // --- Core Run Initializer ---
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchGroupExperiences();
-            fetchSourceForgeProducts();
-        });
-    </script>
-</body>
-</html>
+                const element
