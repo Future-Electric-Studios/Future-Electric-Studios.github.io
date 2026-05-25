@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Future Electric Studios</title>
-    <!-- Importing a professional font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -40,7 +39,14 @@
             height: 60px;
         }
 
-        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: -0.5px; }
+        /* Changed ONLY this font style to match segmented tilted elevator numbers */
+        .logo { 
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900; 
+            font-size: 1.1rem; 
+            letter-spacing: 1px; 
+            color: var(--text-main);
+        }
         
         .nav-links a {
             color: var(--text-dim);
@@ -305,7 +311,6 @@
    <header>
         <h1>Building the <span style="color: var(--accent);">Future</span></h1>
         
-        <!-- Member List Container (Placed directly between Title and Subtitle) -->
         <div class="roblox-section">
             <input type="text" id="roblox-search-input" class="roblox-search" placeholder="Search members by name...">
             <div id="roblox-member-list" class="roblox-list">
@@ -333,7 +338,6 @@
     </div>
 
     <footer>
-        <!-- SourceForge Badge -->
         <div class="sf-root" data-id="4093581" data-badge="oss-users-love-us-black" style="width:142px">
             <a href="https://sourceforge.net/projects/future-electric-studios/" target="_blank">Future Electric Studios</a>
         </div>
@@ -343,7 +347,6 @@
     <script>(function () {var sc=document.createElement('script');sc.async=true;sc.src='https://b.sf-syn.com/badge_js?sf_id=4093581';var p=document.getElementsByTagName('script')[0];p.parentNode.insertBefore(sc, p);})();
     </script>
 
-    <!-- Roblox Member List Script -->
     <script>
         let allMembers = [];
 
