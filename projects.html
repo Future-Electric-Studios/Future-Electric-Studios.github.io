@@ -346,11 +346,11 @@ description: Browse and search Future Electric Studios projects.
             const searchInput = document.getElementById('projectSearch');
             
             const groupId = "34470356";
-            // Correct API route mapping to successfully load published public group experiences via proxy safely
-            const gamesApiUrl = `https://games.roproxy.com/v1/groups/${groupId}/games?accessFilter=Public&sortOrder=Asc&limit=100`;
+            // Configured to the correct v2 group game list mapping
+            const gamesApiUrl = `https://games.roproxy.com/v2/groups/${groupId}/gamesV2?accessFilter=2&sortOrder=Asc&limit=100`;
             const iconApiUrl = `https://thumbnails.roproxy.com/v1/places/icons?returnPolicy=PlaceHolder&size=150x150&format=Png&placeIds=`;
 
-            try {
+        	try {
                 const response = await fetch(gamesApiUrl);
                 if (!response.ok) throw new Error('Data validation error returned from proxy interface');
                 
@@ -362,27 +362,33 @@ description: Browse and search Future Electric Studios projects.
                     return;
                 }
 
-                // Perfect Alphabetical Order Algorithm Execution
-                fetchedGames = gamesRaw.sort((alpha, beta) => alpha.name.localeCompare(beta.name));
+                // Alphabetical sorting sequence execution
+                const sortedGames = gamesRaw.sort((alpha, beta) => alpha.name.localeCompare(beta.name));
 
-                // Process unique location assets inside matching layout maps
-                const placeIds = fetchedGames.map(game => game.rootPlace.id).join(',');
-                const iconResponse = await fetch(`${iconApiUrl}${placeIds}`);
+                // Process specific IDs using the corrected property path rootPlaceId
+                const placeIds = sortedGames.map(game => game.rootPlaceId).filter(id => id).join(',');
+                
                 let iconMap = {};
-
-                if (iconResponse.ok) {
-                    const iconPayload = await iconResponse.json();
-                    (iconPayload.data || []).forEach(imgObj => {
-                        iconMap[imgObj.targetId] = imgObj.imageUrl;
-                    });
+                if (placeIds) {
+                    try {
+                        const iconResponse = await fetch(`${iconApiUrl}${placeIds}`);
+                        if (iconResponse.ok) {
+                            const iconPayload = await iconResponse.json();
+                            (iconPayload.data || []).forEach(imgObj => {
+                                iconMap[imgObj.targetId] = imgObj.imageUrl;
+                            });
+                        }
+                    } catch (e) {
+                        console.warn("Thumbnail block proxy issue:", e);
+                    }
                 }
 
-                // Render compiled structure
-                fetchedGames = fetchedGames.map(game => ({
+                // Structural payload variable hydration loop
+                fetchedGames = sortedGames.map(game => ({
                     name: game.name,
-                    placeId: game.rootPlace.id,
-                    creatorName: game.creator.name,
-                    thumbnailUrl: iconMap[game.rootPlace.id] || 'https://www.roblox.com/images/Ghost/user.png'
+                    placeId: game.rootPlaceId,
+                    creatorName: game.creator ? game.creator.name : "Future Electric Studios",
+                    thumbnailUrl: iconMap[game.rootPlaceId] || 'https://www.roblox.com/images/Ghost/user.png'
                 }));
 
                 renderGames(fetchedGames);
@@ -430,8 +436,6 @@ description: Browse and search Future Electric Studios projects.
             const listContainer = document.getElementById('sfList');
             const searchInput = document.getElementById('sfSearch');
             const projectName = "future-electric-studios";
-            
-            // Accessing SourceForge open distribution indices through standardized cross-origin payload configurations
             const sfApiUrl = `https://sourceforge.net/api/project/name/${projectName}/json`;
 
             try {
@@ -441,7 +445,6 @@ description: Browse and search Future Electric Studios projects.
                 const data = await response.json();
                 const projectData = data.project || {};
                 
-                // Construct a custom single item directory reference index array directly out of workspace metadata variables
                 let mockItems = [
                     {
                         name: projectData.title || "Custom OS Distribution Build",
@@ -461,7 +464,6 @@ description: Browse and search Future Electric Studios projects.
 
             } catch (error) {
                 console.error(error);
-                // Resilient local component processing execution layer to guarantee visible entries even during network load timeouts
                 fetchedProducts = [{
                     name: "Future Electric OS Framework",
                     desc: "Free, optimized operating system project and custom debloated desktop software environments.",
@@ -504,7 +506,7 @@ description: Browse and search Future Electric Studios projects.
             });
         }
 
-        // --- Core Run Initializer Execution Engine ---
+        // --- Core Run Initializer ---
         document.addEventListener('DOMContentLoaded', () => {
             fetchGroupExperiences();
             fetchSourceForgeProducts();
