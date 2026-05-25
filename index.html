@@ -1,3 +1,9 @@
+---
+layout: default
+title: Home
+description: Welcome to Future Electric Studios - Production titles and automated developments.
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +28,12 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Modern Blurred Navbar */
+        /* Seamlessly Matched Navbar Layout */
         nav {
             position: fixed;
             top: 0;
@@ -37,9 +46,10 @@
             justify-content: space-around;
             align-items: center;
             height: 60px;
+            box-sizing: border-box;
         }
 
-        /* Changed ONLY this font style to match segmented tilted elevator numbers */
+        /* Identical Elevator-Segmented Title Style */
         .logo { 
             font-family: 'Orbitron', sans-serif;
             font-weight: 900; 
@@ -48,6 +58,16 @@
             color: var(--text-main);
         }
         
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
@@ -58,16 +78,55 @@
 
         .nav-links a:hover { color: var(--text-main); }
 
-        /* Professional Hero Section */
+        /* Integrated Google Sign-In Button Component */
+        .google-btn {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            color: #1f1f1f;
+            paddding: 0;
+            padding-right: 12px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            height: 32px;
+            margin-left: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .google-btn:hover {
+            background-color: #f1f1f1;
+        }
+
+        .google-icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
+
+        .google-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Unified Header Presentation Wrapper */
         header {
-            min-height: 60vh;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 60px;
+            padding: 120px 20px 80px 20px;
             background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            box-sizing: border-box;
         }
 
         h1 {
@@ -81,202 +140,70 @@
             font-size: 1.2rem;
             color: var(--text-dim);
             max-width: 600px;
+            margin-top: 0;
+            margin-bottom: 30px;
         }
 
-        .cta-button {
-            background: var(--text-main);
-            color: black;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 700;
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
             text-decoration: none;
-            margin-top: 25px;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .cta-button:hover { transform: scale(1.05); }
-
-        /* Roblox Members List Component Styles */
-        .roblox-section {
-            width: 90%;
-            max-width: 500px;
-            margin: 20px auto 10px auto;
-            background: var(--card-bg);
-            border: 1px solid #222;
-            border-radius: 14px;
-            padding: 15px;
-            box-sizing: border-box;
-            text-align: left;
-        }
-
-        .roblox-search {
-            width: 100%;
-            padding: 10px 12px;
-            background: #202020;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 0.9rem;
-            box-sizing: border-box;
-            margin-bottom: 12px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .roblox-search:focus {
-            border-color: var(--accent);
-        }
-
-        .roblox-list {
-            max-height: 220px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        /* Custom modern scrollbar */
-        .roblox-list::-webkit-scrollbar {
-            width: 6px;
-        }
-        .roblox-list::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .roblox-list::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 10px;
-        }
-        .roblox-list::-webkit-scrollbar-thumb:hover {
-            background: #444;
-        }
-
-        .member-row {
-            display: flex;
-            align-items: center;
-            padding: 8px 10px;
-            border-radius: 8px;
-            margin-bottom: 6px;
-            transition: background 0.2s;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        .member-row:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .member-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #252525;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-
-        .member-info {
-            flex-grow: 1;
-            min-width: 0; /* Prevents text overflow */
-        }
-
-        .member-name {
+            padding: 12px 28px;
             font-weight: 700;
-            font-size: 0.9rem;
-            margin: 0;
-            color: var(--text-main);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.2s;
         }
 
-        .member-username {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        .cta-btn:hover {
+            background: #0062cc;
+            transform: translateY(-2px);
         }
 
-        .member-rank {
-            font-size: 0.75rem;
-            color: var(--accent);
-            background: rgba(0, 122, 255, 0.1);
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-weight: 700;
-            margin-left: 10px;
-            white-space: nowrap;
-        }
-
-        .list-status {
-            text-align: center;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            padding: 20px 0;
-            margin: 0;
-        }
-
-        /* Content Grid */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 50px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 18px;
-            border: 1px solid #222;
-            transition: 0.3s;
-        }
-
-        .card:hover { border-color: var(--accent); }
-
-        .card h3 { font-size: 1.5rem; margin-top: 0; }
-        .card p { color: var(--text-dim); font-size: 0.95rem; }
-
+        /* Mobile-Specific Responsive Scaling Layouts */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
         }
-        /* Mobile-Specific Fixes */
         @media (max-width: 600px) {
             nav {
-                flex-direction: column; /* Stacks logo and links */
+                flex-direction: column;
                 height: auto;
                 padding: 15px 0;
             }
 
-            .nav-links {
+            .nav-container {
+                flex-direction: column;
                 margin-top: 10px;
-                display: flex;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .nav-links {
                 justify-content: center;
                 width: 100%;
-                gap: 5px; /* Brings links closer so they don't wrap */
             }
 
             .nav-links a {
                 margin: 0 10px;
                 font-size: 0.85rem;
-                padding: 10px 5px; /* Larger "tap" area for fingers */
+            }
+
+            .google-btn {
+                margin-left: 0;
             }
 
             h1 {
-                font-size: 2.2rem; /* Shrinks the giant title so it fits on one screen */
+                font-size: 2.2rem;
                 padding: 0 10px;
             }
 
             header {
-                height: auto;
-                padding: 100px 20px 40px 20px;
+                padding: 150px 20px 60px 20px;
             }
         }
 
-        /* Footer/Badge Styling */
+        /* Footer Element Alignment Styles */
         footer {
-            margin-top: 50px;
             padding: 40px 0;
             display: flex;
             flex-direction: column;
@@ -284,16 +211,7 @@
             border-top: 1px solid #222;
             width: 100%;
             background: rgba(0, 0, 0, 0.5);
-        }
-
-        .sf-root {
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 0 10px rgba(0, 122, 255, 0.1));
-        }
-
-        .sf-root:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 15px rgba(0, 122, 255, 0.3));
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -301,139 +219,37 @@
 
     <nav>
         <div class="logo">FUTURE ELECTRIC STUDIOS</div>
-        <div class="nav-links">
-            <a href="#">Games</a>
-            <a href="/projects">Products</a>
-            <a href="/feedback">Feedback Form</a>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="/projects">Projects</a>
+                <a href="#">Products</a>
+                <a href="/feedback">Feedback Form</a>
+            </div>
+            <button class="google-btn" id="googleSignUpBtn">
+                <div class="google-icon-wrapper">
+                    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_\"G\"_Logo.svg" alt="Google logo">
+                </div>
+                <span>Sign up with Google</span>
+            </button>
         </div>
     </nav>
 
-   <header>
-        <h1>Building the <span style="color: var(--accent);">Future</span></h1>
-        
-        <div class="roblox-section">
-            <input type="text" id="roblox-search-input" class="roblox-search" placeholder="Search members by name...">
-            <div id="roblox-member-list" class="roblox-list">
-                <p class="list-status">Loading studio members...</p>
-            </div>
-        </div>
-
-        <p>A creative studio developing games, Roblox experiences, and open-source software for everyone.</p>
-        <a href="https://www.roblox.com/communities/34470356/Future-Electric-Studios#!/about" class="cta-button">Join our RBLX Group</a>
+    <header>
+        <h1>Future Electric <span style="color: var(--accent);">Studios</span></h1>
+        <p>Ecosystem infrastructure managing technical deployments, software tools, and digital platforms.</p>
+        <a href="/projects" class="cta-btn">View Projects</a>
     </header>
 
-    <div class="container">
-        <div class="card">
-            <h3>Games & Roblox</h3>
-            <p>Creating immersive games and technical Roblox experiences designed for the community.</p>
-        </div>
-        <div class="card">
-            <h3>Apps & Code</h3>
-            <p>Developing useful apps and specialized code libraries for other developers to build with.</p>
-        </div>
-        <div class="card">
-            <h3>OS Products</h3>
-            <p>Crafting free, optimized operating system projects and debloated software solutions.</p>
-        </div>
-    </div>
-
     <footer>
-        <div class="sf-root" data-id="4093581" data-badge="oss-users-love-us-black" style="width:142px">
-            <a href="https://sourceforge.net/projects/future-electric-studios/" target="_blank">Future Electric Studios</a>
-        </div>
-        <p style="color: #666; font-size: 0.8rem; margin-top: 15px;">© 2026 Future Electric Studios. All Rights Reserved.</p>
+        <p style="color: #666; font-size: 0.8rem; margin: 0;">© 2026 Future Electric Studios. All Rights Reserved.</p>
     </footer>
 
-    <script>(function () {var sc=document.createElement('script');sc.async=true;sc.src='https://b.sf-syn.com/badge_js?sf_id=4093581';var p=document.getElementsByTagName('script')[0];p.parentNode.insertBefore(sc, p);})();
-    </script>
-
     <script>
-        let allMembers = [];
-
-        async function fetchRobloxGroupMembers() {
-            const listContainer = document.getElementById('roblox-member-list');
-            const searchInput = document.getElementById('roblox-search-input');
-            
-            // Using proxy links to ensure compatibility in user browsers without CORS failures
-            const baseGroupUrl = 'https://groups.roproxy.com/v1/groups/34470356/users?sortOrder=Desc&limit=25';
-            const baseAvatarUrl = 'https://thumbnails.roproxy.com/v1/users/avatar-headshot?size=48x48&format=Png&userIds=';
-
-            try {
-                const groupResponse = await fetch(baseGroupUrl);
-                if (!groupResponse.ok) throw new Error('Failed to load group API data');
-                
-                const groupData = await groupResponse.json();
-                allMembers = groupData.data || [];
-
-                if (allMembers.length === 0) {
-                    listContainer.innerHTML = '<p class="list-status">No group members found.</p>';
-                    return;
-                }
-
-                // Batch gather user IDs to fetch all avatars cleanly in a single proxy hit
-                const userIds = allMembers.map(m => m.user.userId).join(',');
-                const avatarResponse = await fetch(`${baseAvatarUrl}${userIds}`);
-                let avatarMap = {};
-                
-                if (avatarResponse.ok) {
-                    const avatarData = await avatarResponse.json();
-                    avatarData.data.forEach(imgObj => {
-                        avatarMap[imgObj.targetId] = imgObj.imageUrl;
-                    });
-                }
-
-                // Attach avatars directly to our member arrays
-                allMembers = allMembers.map(member => ({
-                    ...member,
-                    avatarUrl: avatarMap[member.user.userId] || 'https://www.roblox.com/images/Ghost/user.png'
-                }));
-
-                // Initial render of the gathered roster
-                renderMembers(allMembers);
-
-                // Setup the dynamic filtering search bar listener
-                searchInput.addEventListener('input', (e) => {
-                    const searchTerm = e.target.value.toLowerCase().trim();
-                    const filtered = allMembers.filter(member => 
-                        member.user.displayName.toLowerCase().includes(searchTerm) || 
-                        member.user.username.toLowerCase().includes(searchTerm)
-                    );
-                    renderMembers(filtered);
-                });
-
-            } catch (err) {
-                console.error(err);
-                listContainer.innerHTML = '<p class="list-status" style="color: #ff3b30;">Unable to connect to Roblox group data.</p>';
-            }
-        }
-
-        function renderMembers(membersList) {
-            const listContainer = document.getElementById('roblox-member-list');
-            listContainer.innerHTML = '';
-
-            if (membersList.length === 0) {
-                listContainer.innerHTML = '<p class="list-status">No matching members found.</p>';
-                return;
-            }
-
-            membersList.forEach(member => {
-                const row = document.createElement('div');
-                row.className = 'member-row';
-                row.innerHTML = `
-                    <img class="member-avatar" src="${member.avatarUrl}" alt="${member.user.username}'s Headshot">
-                    <div class="member-info">
-                        <p class="member-name">${member.user.displayName}</p>
-                        <p class="member-username">@${member.user.username}</p>
-                    </div>
-                    <span class="member-rank">${member.role.name}</span>
-                `;
-                listContainer.appendChild(row);
-            });
-        }
-
-        // Run setup routine once the browser parses page layout markup
-        document.addEventListener('DOMContentLoaded', fetchRobloxGroupMembers);
+        document.getElementById('googleSignUpBtn').addEventListener('click', () => {
+            // Placeholder callback trigger hook for Google identity providers auth integration
+            console.log("Google authentication initialization routing requested.");
+            alert("Google Sign-In integration hook clicked. Ready for client ID attachment.");
+        });
     </script>
-
 </body>
 </html>
