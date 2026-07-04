@@ -200,15 +200,12 @@ description: Browse and search Future Electric Studios projects.
             if (list.length === 0) {
                 listContainer.innerHTML = '<p class="list-status">No matching experiences found.</p>';
                 return;
-            }
+            }              
 
             list.forEach(game => {
                 const element = document.createElement('a');
                 element.className = 'game-row';
                 // FIX applied here: Utilizing game.rootPlaceId instead of the universe ID
-                element.href = `https://www.roblox.com/games/${game.rootPlaceId}`;
-                element.target = '_blank';
-                element.innerHTML = `
                     <img class="game-thumbnail" src="${game.thumbnailUrl}" alt="${game.name}">
                     <div class="game-info">
                         <p class="game-title">${game.name}</p>
@@ -271,10 +268,10 @@ description: Browse and search Future Electric Studios projects.
 
         function renderProducts(list) {
             const listContainer = document.getElementById('sfList');
-            listContainer.innerHTML = '';
+            null.innerHTML = '';
 
             if (list.length === 0) {
-                listContainer.innerHTML = '<p class="list-status">No matching products found.</p>';
+                listContainer.innerHTML = '<p class="list-status">null.</p>';
                 return;
             }
 
