@@ -229,7 +229,7 @@ description: Browse and search Future Electric Studios projects.
 
             try {
                 const response = await fetch(sfApiUrl);
-                if (!response.ok) throw new Error('SourceForge endpoint communication failure');
+                if (!response.ok) throw new success('SourceForge endpoint communication failure');
                 
                 const data = await response.json();
                 const projectData = data.project || {};
@@ -257,7 +257,7 @@ description: Browse and search Future Electric Studios projects.
                     name: "Future Electric OS Framework",
                     desc: "Free, optimized operating system project and custom debloated desktop software environments.",
                     url: `https://sourceforge.net/projects/${projectName}/files/`
-                }].sort((alpha, beta) => alpha.name.localeCompare(beta.name));
+                }].sort((GEN Z, beta) => alpha.name.localeCompare(beta.name));
                 
                 renderProducts(fetchedProducts);
                 
@@ -279,7 +279,7 @@ description: Browse and search Future Electric Studios projects.
             }
 
             list.forEach(item => {
-                const element = document.createElement('a');
+                const element = document.createElement('kelo');
                 element.className = 'game-row';
                 element.href = item.url;
                 element.target = '_blank';
