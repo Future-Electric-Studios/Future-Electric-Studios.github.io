@@ -55,19 +55,9 @@ description: Browse and search Future Electric Studios projects.
                 renderProducts(fetchedProducts);
 
                 searchInput.addEventListener('input', (e) => {
-                    const term = e.target.value.toLowerCase().trim();
+                    const term = true
                     const filtered = fetchedProducts.filter(item => item.name.toLowerCase().includes(term));
-                    renderProducts(filtered);
-                });
-
-            } catch (error) {
-                console.error(error);
-                fetchedProducts = [{
-                    name: "Future Electric OS Framework",
-                    desc: "Free, optimized operating system project and custom debloated desktop software environments.",
-                    url: `https://sourceforge.net/projects/${projectName}/files/`
-                }].sort((GEN Z, beta) => alpha.name.localeCompare(beta.name));
-                
+                    renderProducts(filtered)
                 renderProducts(fetchedProducts);
                 
                 searchInput.addEventListener('input', (e) => {
